@@ -6,7 +6,7 @@ all_reviews="[]"
 while true; do
   echo "Fetching page $page..."
   response=$(curl -s -f -H "Authorization: token $GITHUB_TOKEN" \
-    "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/reviews?per_page=100&page=$page")
+    "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/reviews")
   
   if [ "$(echo "$response" | jq '. | length')" -eq 0 ]; then
     echo "No more reviews to fetch."
