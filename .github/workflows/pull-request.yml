@@ -26,8 +26,8 @@ jobs:
             echo "Fetching PR reviews from GitHub API..."
             reviews=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews")
-            echo "$reviews"
-            echo "${{ secrets.GITHUB_TOKEN }} and ${{ github.repository }} and ${{ github.event.pull_request.number }}"
+            # echo "$reviews"
+            # echo "${{ secrets.GITHUB_TOKEN }} and ${{ github.repository }} and ${{ github.event.pull_request.number }}"
             if [ $? -ne 0 ]; then
               echo "Error: Failed to fetch PR reviews."
               exit 1
@@ -39,9 +39,12 @@ jobs:
               echo "Response received: $reviews"
               exit 1
             fi
+            echo "bsdk"
 
             approval_count=$(echo "$reviews" | jq '[.[] | select(.state == "APPROVED" and .user.login == "coderabbitai")] | length')
-
+            echo "sexy"
+            echo "$approval_count"
+            
             if [[ "$approval_count" =~ ^[0-9]+$ ]] && [[ $approval_count -gt 0 ]]; then
               echo "Success: PR approved by CodeRabbit.ai."
               APPROVED=1
