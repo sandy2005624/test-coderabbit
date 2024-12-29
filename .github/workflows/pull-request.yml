@@ -5,12 +5,16 @@ on:
     branches:
       - '**'
 
+
 jobs:
   CodeRabbit-Approval:
     name: Validate CodeRabbit.ai Approval
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
       - name: Validate CodeRabbit.ai Approval
         run: |
           ls -l .github/workflows/
