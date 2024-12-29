@@ -43,7 +43,7 @@ jobs:
             echo "$latest_reviews" | jq -r '.[] | "User: \(.user.login), State: \(.state)"'
 
             echo "Checking approval status of 'coderabbitai'..."
-            approval_state=$(echo "$latest_reviews" | jq -r '[.[] | select(.user.login == "coderabbitai" and .state == "APPROVED")] | length')
+            approval_state=$(echo "$latest_reviews" | jq -r '[.[] | select(.user.login == "coderabbitai[bot]" and .state == "APPROVED")] | length')
             
             echo "Approval count for CodeRabbit.ai: $approval_state"
             
