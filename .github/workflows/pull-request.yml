@@ -14,7 +14,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
+      - name: Debug Repository Structure
+        run: |
+          echo "Listing repository structure..."
+          ls -R .
       - name: Validate CodeRabbit.ai Approval
         run: |
           ls -l .github/workflows/
