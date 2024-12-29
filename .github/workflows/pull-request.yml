@@ -17,6 +17,7 @@ jobs:
       - name: Debug Repository Structure
         run: |
           echo "Listing repository structure..."
+          echo "sex"echo "sex"echo "sex"echo "sex"echo "sex"echo "sex"echo "sex"echo "sex"
           ls -R .
       - name: Validate CodeRabbit.ai Approval
         run: |
