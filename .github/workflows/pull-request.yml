@@ -5,11 +5,7 @@ on:
     branches:
       - '**'
 
-env:
-  CODECOV_UNIQUE_NAME: CODECOV_UNIQUE_NAME-${{ github.run_id }}-${{ github.run_number }}
-
 jobs:
-
   CodeRabbit-Approval:
     name: Validate CodeRabbit.ai Approval
     runs-on: ubuntu-latest
@@ -40,8 +36,14 @@ jobs:
               exit 1
             fi
 
-            approval_count=$(echo "$reviews" | jq '[.[] | select(.state == "APPROVED" and .user.login == "coderabbitai")] | length')
+            echo "Printing all review user logins and states:"
+            echo "$reviews" | jq -r '.[] | "User: \(.user.login), State: \(.state)"'
 
+            echo "Parsing approval count for 'coderabbitai'..."
+            approval_count=$(echo "$reviews" | jq '[.[] | select(.state == "APPROVED" and .user.login == "coderabbitai[bot]")] | length')
+            
+            echo "Approval count for CodeRabbit.ai: $approval_count"
+            
             if [[ "$approval_count" =~ ^[0-9]+$ ]] && [[ $approval_count -gt 0 ]]; then
               echo "Success: PR approved by CodeRabbit.ai."
               APPROVED=1
