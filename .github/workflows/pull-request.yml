@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: Validate CodeRabbit.ai Approval
         run: |
+          ls -l .github/workflows/scripts/
           chmod +x $GITHUB_WORKSPACE/.github/workflows/scripts/validate-coderabbit.sh
           $GITHUB_WORKSPACE/.github/workflows/scripts/validate-coderabbit.sh
         env:
