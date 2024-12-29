@@ -40,7 +40,7 @@ jobs:
             echo "$reviews" | jq -r '.[] | "User: \(.user.login), State: \(.state)"'
 
             echo "Parsing approval count for 'coderabbitai'..."
-            approval_count=$(echo "$reviews" | jq '[.[] | select(.state == "APPROVED" and .user.login == "coderabbitai")] | length')
+            approval_count=$(echo "$reviews" | jq '[.[] | select(.state == "APPROVED" and .user.login == "coderabbitai[bot]")] | length')
             
             echo "Approval count for CodeRabbit.ai: $approval_count"
             
