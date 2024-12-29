@@ -36,7 +36,7 @@ echo "Parsing the latest review by each user..."
 latest_reviews=$(echo "$reviews" | jq -c '[.[]] | group_by(.user.login) | map(max_by(.submitted_at))')
 
 echo "Printing all latest review user logins and states:"
-echo "$latest_reviews" | jq -r '.[] | "User: \(.user.login), State: \(.state)"'
+echo "$latest_reviews" | jq -r '.[] | "User: \(.user.login), State: \(.state), Comment: \(.comment.body)"'
 
 echo "Checking approval status of 'coderabbitai[bot]'..."
 approval_state=$(echo "$latest_reviews" | jq -r '[.[] | select(.user.login == "coderabbitai[bot]" and .state == "APPROVED")] | length')
