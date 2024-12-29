@@ -4,8 +4,6 @@ on:
   pull_request:
     branches:
       - '**'
-
-
 jobs:
   CodeRabbit-Approval:
     name: Validate CodeRabbit.ai Approval
