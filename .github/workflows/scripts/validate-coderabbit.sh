@@ -1,5 +1,5 @@
 #!/bin/bash
-sleep 120
+sleep 60
 
 # Commands to execute after waiting
 echo "2 minutes have passed. Now executing the next commands."
@@ -21,6 +21,9 @@ if [ "$latest_reviews" = "null" ] || [ -z "$latest_reviews" ]; then
   exit 1
 fi
 
+echo "Step 2: Checking approval status of 'coderabbitai[bot]'..."
+echo "Step 2: Checking approval status of 'coderabbitai[bot]'..."
+echo "Step 2: Checking approval status of 'coderabbitai[bot]'..."
 echo "Step 2: Checking approval status of 'coderabbitai[bot]'..."
 approval_state=$(echo "$latest_reviews" | jq -r '[.[] | select(.user.login == "coderabbitai[bot]" and .state == "APPROVED")] | length')
 
