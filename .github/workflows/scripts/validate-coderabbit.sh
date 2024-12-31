@@ -1,5 +1,8 @@
 #!/bin/bash
+sleep 120
 
+# Commands to execute after waiting
+echo "2 minutes have passed. Now executing the next commands."
 echo "Step 1: Fetching all PR reviews..."
 
 response=$(curl -s -f -H "Authorization: token $GITHUB_TOKEN" \
